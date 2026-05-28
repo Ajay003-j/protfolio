@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ajay J | Aspiring SOC Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #090e13; --surface: #0d1520;
+    --accent: #00e5ff; --accent2: #39ff14; --accent3: #ff4c60;
+    --text: #c8d8e8; --muted: #4a6278; --border: rgba(0,229,255,0.15);
+    --mono: 'Share Tech Mono', monospace; --sans: 'Syne', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+  body::before {
+    content:''; position:fixed; inset:0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,229,255,0.012) 2px, rgba(0,229,255,0.012) 4px);
+    pointer-events:none; z-index:9999;
+  }
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1rem 3rem; background:rgba(9,14,19,0.92);
+    border-bottom:1px solid var(--border); backdrop-filter:blur(8px);
+  }
+  .logo { font-family:var(--mono); font-size:0.9rem; color:var(--accent); letter-spacing:0.08em; }
+  nav ul { list-style:none; display:flex; gap:2rem; }
+  nav ul a { font-family:var(--mono); font-size:0.75rem; color:var(--muted); text-decoration:none; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+  nav ul a:hover { color:var(--accent); }
+  .hire-badge {
+    font-family:var(--mono); font-size:0.7rem; padding:0.3rem 0.8rem;
+    background:rgba(57,255,20,0.1); border:1px solid rgba(57,255,20,0.3);
+    color:var(--accent2); letter-spacing:0.1em; text-transform:uppercase;
+    display:flex; align-items:center; gap:0.4rem;
+  }
+  .hire-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--accent2); animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:8rem 3rem 4rem; position:relative; overflow:hidden; }
+  .hero-grid {
+    position:absolute; inset:0;
+    background-image: linear-gradient(rgba(0,229,255,0.04) 1px,transparent 1px), linear-gradient(90deg,rgba(0,229,255,0.04) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse 80% 60% at 40% 50%, black 20%, transparent 100%);
+  }
+  .terminal-line { font-family:var(--mono); font-size:0.8rem; color:var(--muted); margin-bottom:1.5rem; display:flex; align-items:center; gap:0.5rem; }
+  .terminal-line .prompt { color:var(--accent2); }
+  .terminal-line .cursor { display:inline-block; width:8px; height:14px; background:var(--accent); animation:blink 1s infinite; vertical-align:middle; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  h1 { font-family:var(--sans); font-size:clamp(2.5rem,6vw,5rem); font-weight:800; line-height:1.05; color:#fff; margin-bottom:0.5rem; }
+  .name-accent { color:var(--accent); }
+  .hero-role { font-family:var(--mono); font-size:1rem; color:var(--muted); margin-bottom:1rem; }
+  .hero-role span { color:var(--accent); }
+  .fresher-tag { display:inline-block; font-family:var(--mono); font-size:0.7rem; padding:0.3rem 0.8rem; margin-bottom:1.5rem; background:rgba(255,76,96,0.1); border:1px solid rgba(255,76,96,0.25); color:var(--accent3); letter-spacing:0.1em; text-transform:uppercase; }
+  .hero-bio { font-family:var(--mono); font-size:0.9rem; color:var(--muted); max-width:540px; margin-bottom:2.5rem; line-height:1.9; }
+  .hero-bio span { color:var(--text); }
+  .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn { font-family:var(--mono); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.7rem 1.5rem; cursor:pointer; text-decoration:none; display:inline-block; transition:transform 0.15s, background 0.15s; clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
+  .btn-p { background:var(--accent); color:#000; font-weight:700; border:none; }
+  .btn-p:hover { background:#fff; transform:translateY(-2px); }
+  .btn-s { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  .btn-s:hover { background:rgba(0,229,255,0.1); transform:translateY(-2px); }
+  .learning-widget { position:absolute; right:3rem; top:50%; transform:translateY(-50%); background:var(--surface); border:1px solid var(--border); padding:1.5rem; width:250px; font-family:var(--mono); }
+  .lw-title { font-size:0.65rem; color:var(--accent); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.5rem; }
+  .lw-item { margin-bottom:1rem; }
+  .lw-label { display:flex; justify-content:space-between; font-size:0.7rem; color:var(--muted); margin-bottom:0.35rem; }
+  .lw-label span:last-child { color:var(--accent2); }
+  .lw-track { height:3px; background:rgba(255,255,255,0.05); }
+  .lw-fill { height:100%; background:var(--accent); }
+
+  section { padding:5rem 3rem; max-width:1100px; margin:0 auto; }
+  .section-label { font-family:var(--mono); font-size:0.7rem; color:var(--accent); letter-spacing:0.25em; text-transform:uppercase; margin-bottom:0.5rem; }
+  .section-label::before { content:'// '; color:var(--muted); }
+  h2 { font-family:var(--sans); font-size:2.2rem; font-weight:800; color:#fff; margin-bottom:2.5rem; line-height:1.1; }
+  .section-divider { border:none; border-top:1px solid var(--border); margin:0 3rem; }
+
+  /* ABOUT */
+  .about-grid { display:grid; grid-template-columns:220px 1fr; gap:3rem; align-items:start; }
+
+  /*
+   * ─── PHOTO INSTRUCTIONS ─────────────────────────────────────
+   * 1. Save your photo as photo.jpg in the same folder as this file.
+   * 2. Find the photo-frame div below.
+   * 3. Replace the two placeholder divs with:
+   *    <img src="photo.jpg" alt="Your Name" style="width:100%;height:100%;object-fit:cover;display:block;">
+   * ────────────────────────────────────────────────────────────
+   */
+  .photo-frame { width:210px; aspect-ratio:3/4; border:1px solid var(--border); position:relative; overflow:hidden; background:var(--surface); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem; }
+  .photo-frame::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:var(--accent); }
+  .photo-frame::after  { content:''; position:absolute; bottom:0;left:0;right:0; height:3px; background:var(--accent); }
+  .photo-frame img { width:100%; height:100%; object-fit:cover; display:block; }
+  .ph-icon { font-size:2.5rem; color:var(--muted); }
+  .ph-text { font-family:var(--mono); font-size:0.6rem; color:var(--muted); text-align:center; text-transform:uppercase; letter-spacing:0.1em; padding:0 1rem; }
+  .pc { position:absolute; width:14px; height:14px; border-color:var(--accent); border-style:solid; }
+  .pc.tl { top:8px;left:8px; border-width:1px 0 0 1px; }
+  .pc.tr { top:8px;right:8px; border-width:1px 1px 0 0; }
+  .pc.bl { bottom:8px;left:8px; border-width:0 0 1px 1px; }
+  .pc.br { bottom:8px;right:8px; border-width:0 1px 1px 0; }
+
+  .about-content p { font-size:0.95rem; color:var(--text); margin-bottom:1rem; }
+  .about-content p .hl { color:var(--accent); font-family:var(--mono); font-size:0.85rem; }
+  .edu-card { margin-top:1.5rem; background:var(--surface); border:1px solid var(--border); padding:1.25rem; position:relative; }
+  .edu-card::before { content:''; position:absolute; top:0;left:0; width:3px; height:100%; background:var(--accent2); }
+  .edu-label { font-family:var(--mono); font-size:0.65rem; color:var(--accent2); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:0.4rem; }
+  .edu-degree { font-size:1rem; font-weight:700; color:#fff; }
+  .edu-school { font-family:var(--mono); font-size:0.8rem; color:var(--muted); }
+
+  /* SKILLS */
+  .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .skill-group { background:var(--surface); border:1px solid var(--border); padding:1.25rem; }
+  .skill-group h3 { font-family:var(--mono); font-size:0.7rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:0.75rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border); }
+  .skill-tag { display:inline-block; font-family:var(--mono); font-size:0.68rem; padding:0.2rem 0.55rem; background:rgba(0,229,255,0.06); border:1px solid rgba(0,229,255,0.18); color:var(--text); margin:0.2rem 0.2rem 0.2rem 0; }
+  .skill-tag.learning { border-color:rgba(255,184,0,0.3); background:rgba(255,184,0,0.06); color:#ffb800; }
+
+  /* LABS */
+  .labs-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
+  .lab-card { background:var(--surface); border:1px solid var(--border); padding:1.5rem; position:relative; overflow:hidden; transition:border-color 0.2s, transform 0.2s; }
+  .lab-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+  .lab-card::after { content:''; position:absolute; top:0;right:0; width:36px;height:36px; background:linear-gradient(135deg, transparent 50%, rgba(0,229,255,0.12) 50%); }
+  .lab-type { font-family:var(--mono); font-size:0.62rem; color:var(--accent2); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:0.6rem; }
+  .lab-card h3 { font-family:var(--sans); font-size:1rem; font-weight:700; color:#fff; margin-bottom:0.6rem; }
+  .lab-card p { font-size:0.82rem; color:var(--muted); line-height:1.6; margin-bottom:0.75rem; }
+  .lab-tools { display:flex; flex-wrap:wrap; gap:0.3rem; }
+  .lab-tool { font-family:var(--mono); font-size:0.62rem; padding:0.15rem 0.4rem; background:rgba(0,229,255,0.07); border:1px solid rgba(0,229,255,0.15); color:var(--muted); }
+  .platform-tag { font-family:var(--mono); font-size:0.62rem; padding:0.2rem 0.5rem; text-transform:uppercase; letter-spacing:0.1em; margin-top:0.75rem; display:inline-block; }
+  .thm { background:rgba(255,76,96,0.1); color:var(--accent3); border:1px solid rgba(255,76,96,0.25); }
+  .htb { background:rgba(57,255,20,0.08); color:var(--accent2); border:1px solid rgba(57,255,20,0.2); }
+  .own { background:rgba(0,229,255,0.08); color:var(--accent); border:1px solid var(--border); }
+
+  /* CERTS */
+  .certs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+  .cert-card { background:var(--surface); border:1px solid var(--border); padding:1.25rem; text-align:center; }
+  .cert-icon { font-size:1.75rem; margin-bottom:0.5rem; }
+  .cert-name { font-family:var(--mono); font-size:0.75rem; color:#fff; letter-spacing:0.05em; margin-bottom:0.3rem; }
+  .cert-org { font-family:var(--mono); font-size:0.65rem; color:var(--muted); }
+  .cert-status { display:inline-block; font-family:var(--mono); font-size:0.6rem; padding:0.2rem 0.5rem; margin-top:0.5rem; text-transform:uppercase; letter-spacing:0.08em; }
+  .cert-earned { background:rgba(57,255,20,0.1); color:var(--accent2); border:1px solid rgba(57,255,20,0.25); }
+  .cert-studying { background:rgba(255,184,0,0.08); color:#ffb800; border:1px solid rgba(255,184,0,0.25); }
+
+  /* CONTACT */
+  .contact-info-text { font-family:var(--mono); font-size:0.85rem; color:var(--muted); margin-bottom:2rem; line-height:1.9; max-width:560px; }
+  .contact-links { display:flex; flex-direction:column; gap:0.75rem; max-width:460px; }
+  .contact-link { display:flex; align-items:center; gap:0.75rem; font-family:var(--mono); font-size:0.82rem; color:var(--text); text-decoration:none; padding:0.75rem 1rem; background:var(--surface); border:1px solid var(--border); transition:border-color 0.2s, color 0.2s; }
+  .contact-link:hover { border-color:var(--accent); color:var(--accent); }
+  .cl-icon { width:22px; text-align:center; color:var(--accent); flex-shrink:0; }
+
+  footer { border-top:1px solid var(--border); padding:1.75rem 3rem; display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:0.68rem; color:var(--muted); }
+
+  @media(max-width:900px){
+    .learning-widget{display:none;}
+    .about-grid{grid-template-columns:1fr;}
+    .photo-frame{width:160px;}
+    .skills-grid,.certs-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:600px){
+    nav{padding:1rem;} nav ul{display:none;}
+    .hero{padding:7rem 1.5rem 3rem;}
+    section{padding:3.5rem 1.5rem;}
+    .skills-grid,.labs-grid,.certs-grid{grid-template-columns:1fr;}
+    footer{flex-direction:column;gap:0.5rem;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV — change "your_name.sec" to your handle -->
+<nav>
+  <div class="logo">your_name.sec</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#labs">Labs</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hire-badge"><div class="dot"></div>Open to Opportunities</div>
+</nav>
+
+<!-- HERO — edit your name, titles, and bio lines -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="terminal-line">
+    <span class="prompt">$</span>
+    <span>whoami</span>
+    <span class="cursor"></span>
+  </div>
+  <h1>Hi, I'm <span class="name-accent">Ajay J</span></h1>
+  <div class="hero-role">Aspiring <span>SOC Analyst</span> &amp; Cybersecurity Enthusiast</div>
+  <div class="fresher-tag">&#x25CF; Entry Level &nbsp;·&nbsp; Actively Learning &nbsp;·&nbsp; Tamil Nadu, India</div>
+  <p class="hero-bio">
+    // <span>Final year student</span> passionate about blue team security.<br/>
+    // Building skills through <span>home labs, CTFs, and online platforms</span>.<br/>
+    // Looking for my <span>first role in a SOC environment</span>.
+  </p>
+  <div class="hero-actions">
+    <a href="#labs" class="btn btn-p">See My Labs</a>
+  </div>
+
+<hr class="section-divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <h2>Who I Am</h2>
+  <div class="about-grid">
+
+    <!--
+      PHOTO: Replace the two placeholder divs below with:
+      <img src="photo.jpg" alt="Your Name" style="width:100%;height:100%;object-fit:cover;display:block;">
+      (Put photo.jpg in the same folder as this file)
+    -->
+    <div class="photo-frame">
+      <div class="pc tl"></div><div class="pc tr"></div>
+      <div class="pc bl"></div><div class="pc br"></div>
+      <div class="ph-icon">&#x1F464;</div>
+      <div class="ph-text">Your photo here</div>
+    </div>
+
+    <div class="about-content">
+      <!-- Edit this bio to match your real background -->
+      <p>I'm a <span class="hl">final year B.E Computer Science</span> student from Tamil Nadu with a growing obsession for cybersecurity — specifically the blue team side. I discovered SOC work through online courses and haven't looked back since.</p>
+      <p>I spend my free time on <span class="hl">TryHackMe</span> practising log analysis, network traffic investigation, and incident triage in controlled environments. I love understanding how attacks work so I can learn to detect them.</p>
+      <p>I have no professional experience yet — but I have curiosity, consistency, and a genuine drive to grow into a capable analyst. I'm ready to learn everything a real SOC environment can teach me.</p>
+      <div class="edu-card">
+        <div class="edu-label">&#x25BA; Education</div>
+        <div class="edu-degree">B.E Computer Science</div>  <!-- Edit your degree -->
+        <div class="edu-school">DMI Engineering college &nbsp;·&nbsp; 2022 – 2026 (Expected)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider"/>
+
+<!-- SKILLS — yellow tags = still learning, white = comfortable -->
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2>What I Know &amp; What I'm Learning</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>Networking Basics</h3>
+      <span class="skill-tag">TCP/IP</span>
+      <span class="skill-tag">DNS / DHCP</span>
+      <span class="skill-tag">Firewalls</span>
+      <span class="skill-tag">Wireshark</span>
+      <span class="skill-tag">OSI Model</span>
+      <span class="skill-tag">VPNs</span>
+    </div>
+    <div class="skill-group">
+      <h3>Security Concepts</h3>
+      <span class="skill-tag">MITRE ATT&amp;CK</span>
+      <span class="skill-tag">Cyber Kill Chain</span>
+      <span class="skill-tag">IOCs &amp; IOAs</span>
+      <span class="skill-tag">Phishing Analysis</span>
+      <span class="skill-tag">Log Analysis</span>
+    </div>
+    <div class="skill-group">
+      <h3>Tools (Learning)</h3>
+      <span class="skill-tag learning">Splunk</span>
+      <span class="skill-tag learning">Wazuh</span>
+      <span class="skill-tag">VirusTotal</span>
+      <span class="skill-tag">Nmap</span>
+      <span class="skill-tag learning">Elastic SIEM</span>
+    </div>
+    <div class="skill-group">
+      <h3>Operating Systems</h3>
+      <span class="skill-tag">Windows</span>
+      <span class="skill-tag">Linux (Ubuntu)</span>
+      <span class="skill-tag">Kali Linux</span>
+      <span class="skill-tag">CLI / Bash</span>
+    </div>
+    <div class="skill-group">
+      <h3>Scripting</h3>
+      <span class="skill-tag">Python </span>
+      <span class="skill-tag">PowerShell</span>
+      <span class="skill-tag">Bash Scripting</span>
+      <span class="skill-tag learning">C</span>
+    </div>
+    <div class="skill-group">
+      <h3>Platforms</h3>
+      <span class="skill-tag">TryHackMe</span>
+      <span class="skill-tag">Blue Team Labs</span>
+      <span class="skill-tag">LetsDefend</span>
+    </div>
+  </div>
+  <p style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:1rem;">
+    <span style="color:#ffb800;">&#9632;</span> Yellow = actively learning &nbsp;|&nbsp;
+    <span style="color:var(--text);">&#9632;</span> White = comfortable with
+  </p>
+</section>
+
+<hr class="section-divider"/>
+
+<!-- LABS — replace with your actual lab/CTF work -->
+<section id="labs">
+  <div class="section-label">Labs &amp; Projects</div>
+  <h2>Hands-On Work</h2>
+  <div class="labs-grid">
+    <div class="lab-card">
+      <div class="lab-type">&#x25BA; Home Lab</div>
+      <h3>SOC Home Lab Setup</h3>
+      <p>Built a virtual lab using VirtualBox with a Windows VM and Splunk SIEM. Generated attack scenarios and practised detecting them through log correlation and alerts.</p>
+      <div class="lab-tools">
+        <span class="lab-tool">VirtualBox</span>
+        <span class="lab-tool">Splunk</span>
+        <span class="lab-tool">Windows Server</span>
+        <span class="lab-tool">Ubuntu</span>
+      </div>
+      <span class="platform-tag own">Personal Lab</span>
+    </div>
+    <div class="lab-card">
+      <div class="lab-type">&#x25BA; CTF / Platform</div>
+      <h3>TryHackMe — SOC Level 1 Path</h3>
+      <p>Completed the SOC Level 1 learning path covering phishing analysis, SIEM fundamentals, network traffic analysis, and digital forensics basics.</p>
+      <div class="lab-tools">
+        <span class="lab-tool">Splunk</span>
+        <span class="lab-tool">Wireshark</span>
+        <span class="lab-tool">Snort</span>
+        <span class="lab-tool">Email Analysis</span>
+      </div>
+      <span class="platform-tag thm">TryHackMe</span>
+    </div>
+    <div class="lab-card">
+      <div class="lab-type">&#x25BA; Investigation</div>
+      <h3>Phishing Email Analysis Exercise</h3>
+      <p>Analysed 15+ suspicious email samples — extracted headers, identified spoofed domains, checked URLs via VirusTotal, and documented findings in a mock incident report.</p>
+      <div class="lab-tools">
+        <span class="lab-tool">VirusTotal</span>
+        <span class="lab-tool">MXToolbox</span>
+        <span class="lab-tool">Email Headers</span>
+        <span class="lab-tool">URLScan</span>
+      </div>
+      <span class="platform-tag own">Self Study</span>
+    </div>
+    <div class="lab-card">
+      <div class="lab-type">&#x25BA; Network Analysis</div>
+      <h3>Wireshark PCAP Analysis</h3>
+      <p>Analysed captured network traffic files to identify suspicious patterns — port scans, ARP spoofing, and cleartext credential transmission using Wireshark filters.</p>
+      <div class="lab-tools">
+        <span class="lab-tool">Wireshark</span>
+        <span class="lab-tool">PCAP Files</span>
+        <span class="lab-tool">TCP/IP</span>
+        <span class="lab-tool">tcpdump</span>
+      </div>
+      <span class="platform-tag htb">Blue Team Labs</span>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider"/>
+
+<!-- CERTS — mark earned vs studying vs planned -->
+<section id="certs">
+  <div class="section-label">Certifications</div>
+  <h2>Credentials &amp; Progress</h2>
+    <div class="cert-card">
+      <div class="cert-icon">&#x2714;</div>
+      <div class="cert-name">SOC Level 1 Path</div>
+      <div class="cert-org">TryHackMe</div>
+      <div class="cert-status cert-earned">Completed</div>
+</section>
+
+<hr class="section-divider"/>
+
+<!-- CONTACT — edit your links -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2>Let's Connect</h2>
+  <p class="contact-info-text">
+    // I'm a fresher actively looking for my first opportunity in cybersecurity — internships, junior SOC roles, or any chance to learn on the job. Feel free to reach out!
+  </p>
+  <div class="contact-links">
+    <a href="ajay0032004j@gmail.com" class="contact-link">
+      <span class="cl-icon">@</span> ajay0032004j@gmail.com
+    </a>
+    <a href="www.linkedin.com/in/ajay-j-5b23b62a9" class="contact-link" target="_blank">
+      <span class="cl-icon">in</span> www.linkedin.com/in/ajay-j-5b23b62a9
+    </a>
+    <a href="https://github.com/Ajay003-j/" class="contact-link" target="_blank">
+      <span class="cl-icon">&lt;/&gt;</span> https://github.com/Ajay003-j/
+    </a>
+    <a href="https://tryhackme.com/p/Frozonstars" class="contact-link" target="_blank">
+      <span class="cl-icon">&#x1F6E1;</span> https://tryhackme.com/p/Frozonstars
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>your_name.sec — Portfolio 2025</span>
+  <span>Fresher. Hungry. Learning every day.</span>
+  <span>Kerala, India</span>
+</footer>
+
+</body>
+</html>
